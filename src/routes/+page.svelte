@@ -393,77 +393,109 @@
             </ul>
         </section>
 
-        <!-- <section class="section section-padding-2">
+        <section class="section section-padding-2">
             <div class="container">
                 <div class="section-heading heading-left mb--40"><span class="subtitle">Our Project</span>
                     <h2 class="title">Some of our<br>finest work.</h2>
                 </div>
                 <div class="axil-isotope-wrapper">
-                    <div class="isotope-button isotope-project-btn"><button data-filter="*" class="is-checked"><span
+                    <!-- <div class="isotope-button isotope-project-btn"><button data-filter="*" class="is-checked"><span
                                 class="filter-text">All Works</span></button><button data-filter=".branding"><span
                                 class="filter-text">Branding</span></button><button data-filter=".mobile"><span
-                                class="filter-text">Mobile</span></button></div>
+                                class="filter-text">Mobile</span></button></div> -->
                     <div class="row row-35 isotope-list">
                         <div class="col-md-6 project branding">
                             <div class="project-grid">
-                                <div class="thumbnail"><a href="single-portfolio.html"><img
-                                            src="assets/media/project/project-1.png" alt="project"></a></div>
+                                <div class="thumbnail"><img
+                                            src="assets/media/project/blur.jpg" alt="project"></div>
                                 <div class="content">
-                                    <h4 class="title"><a href="single-portfolio.html">Creative Agency</a></h4><span
-                                        class="subtitle">Full Branding, Website, App</span>
+                                    <h4 class="title">A Cryptography Website</h4><span
+                                        class="subtitle">A website where people can come and create, buy and sell their own Crypto [ Nextjs(Front-end), Expressjs(RestApi), Laravel(Websocket and Storage) ] </span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 project mobile">
                             <div class="project-grid">
-                                <div class="thumbnail"><a href="single-portfolio.html"><img
-                                            src="assets/media/project/project-2.png" alt="project"></a></div>
+                                <div class="thumbnail"><img
+                                            src="assets/media/project/web-2.jpg" alt="project"></div>
                                 <div class="content">
-                                    <h4 class="title"><a href="single-portfolio.html">Digital Marketing</a></h4><span
-                                        class="subtitle">Logo, Website & Mobile App</span>
+                                    <h4 class="title">Digital Art Learning Site</h4><span
+                                        class="subtitle">A website where people reads and learns digital art and admin uploads content from our
+                                        hand made CMS [ Reactjs, TailwindCSS, Expressjs, MongoDB ]
+                                    </span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 project branding">
                             <div class="project-grid">
-                                <div class="thumbnail"><a href="single-portfolio.html"><img
-                                            src="assets/media/project/project-3.png" alt="project"></a></div>
+                                <div class="thumbnail"><img
+                                            src="assets/media/project/3.webp" alt="project"></div>
                                 <div class="content">
-                                    <h4 class="title"><a href="single-portfolio.html">Digital Agency</a></h4><span
-                                        class="subtitle">Website, UI/UX</span>
+                                    <h4 class="title">Fitness Website</h4><span
+                                        class="subtitle">A web app where people buys membership and completes tasks, 
+                                        gets diet plan and watches videos of workout [Nextjs, Laravel, PostgreSQL, Cloudinary]
+                                    </span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 project mobile">
                             <div class="project-grid">
-                                <div class="thumbnail"><a href="single-portfolio.html"><img
-                                            src="assets/media/project/project-4.png" alt="project"></a></div>
+                                <div class="thumbnail"><img
+                                            src="assets/media/project/4.png" alt="project"></div>
                                 <div class="content">
-                                    <h4 class="title"><a href="single-portfolio.html">Plan Management</a></h4><span
-                                        class="subtitle">Branding, Website, IOS App</span>
+                                    <h4 class="title">Ecommerce App</h4><span
+                                        class="subtitle">A app where people orders products from. An Admin uploads products and manages orders from another
+                                        Admin App [ Flutter, Firebase ]
+                                    </span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 project branding">
                             <div class="project-grid">
-                                <div class="thumbnail"><a href="single-portfolio.html"><img
-                                            src="assets/media/project/project-5.png" alt="project"></a></div>
+                                <div class="thumbnail"><img
+                                            src="assets/media/project/DM-1.jpg" alt="project"></div>
                                 <div class="content">
-                                    <h4 class="title"><a href="single-portfolio.html">Social Engagement</a></h4><span
+                                    <h4 class="title">Social Engagement</h4><span
                                         class="subtitle">Design, Development</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 project mobile">
                             <div class="project-grid">
-                                <div class="thumbnail"><a href="single-portfolio.html"><img
-                                            src="assets/media/project/project-6.png" alt="project"></a></div>
+                                <div class="thumbnail"><img
+                                            src="assets/media/project/DM-2.jpg" alt="project"></div>
                                 <div class="content">
-                                    <h4 class="title"><a href="single-portfolio.html">Web Application</a></h4><span
+                                    <h4 class="title">Web Application</h4><span
                                         class="subtitle">Logo, Webapp, App</span>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-6 project mobile">
+                            <div class="project-grid">
+                                <div class="thumbnail"><img
+                                            src="assets/media/project/poster.jpg" style="width:610x; height:460px; object-fit: cover;"  alt="project"></div>
+                                <div class="content">
+                                    <h4 class="title">Social Media Marketing</h4><span
+                                        class="subtitle">We designed their all the posters and did organic marketing as well as Paid Boosting 
+                                        to grow brand awareness about their coaching centre.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 project mobile">
+                            <div class="project-grid">
+                                <div class="thumbnail">
+                                    <video style=" background-color: black;" width="610" height="460" controls>
+                                        <source src="assets/media/project/cyan.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                <div class="content">
+                                    <h4 class="title">Video ad</h4><span
+                                        class="subtitle">Our marketing team made this video with Adobe After Effects <aside></aside> their facebook ad.</span>
+                                </div>
+                            </div>
+                        </div>  
                     </div>
                 </div>
             </div>
@@ -472,7 +504,7 @@
                 <li class="shape shape-2"><img src="assets/media/others/bubble-2.png" alt="Line"></li>
                 <li class="shape shape-3"><img src="assets/media/others/bubble-1.png" alt="Line"></li>
             </ul>
-        </section> -->
+        </section>
         <!-- <section class="section section-padding bg-color-dark">
             <div class="container">
                 <div class="section-heading heading-light"><span class="subtitle">Featured Case Study</span>
@@ -521,61 +553,48 @@
                 <li class="shape shape-3"><img src="assets/media/others/bubble-5.png" alt="line"></li>
                 <li class="shape shape-4"><img src="assets/media/others/bubble-6.png" alt="line"></li>
             </ul>
-        </section>
+        </section> -->
         <section class="section section-padding">
             <div class="container">
                 <div class="section-heading heading-left"><span class="subtitle">Testimonial</span>
-                    <h2 class="title">From getting started</h2>
-                    <p>Nulla facilisi. Nullam in magna id dolor blandit rutrum eget vulputate augue sed eu leo eget
-                        risus imperdiet.</p>
+                    <h2 class="title">What previous clients have to say about us</h2>
+                    <p></p>
                 </div>
                 <div class="row">
                     <div class="col-lg-4" data-sal="slide-up" data-sal-duration="1000" data-sal-delay="100">
                         <div class="testimonial-grid active"><span class="social-media"><img
-                                    src="assets/media/icon/yelp-2.png" alt="Yelp"></span>
-                            <p>“ Donec metus lorem, vulputate at sapien sit amet, auctor iaculis lorem. In vel hendrerit
-                                nisi. Vestibulum eget risus velit. ”</p>
+                                    src="assets/media/nik.png"  style="width: 100px; border-radius: 100px; " alt="Yelp"></span>
+                            <p>“ IonicByte team have shown great efficiency and professionalism while developing the website of Nikunjo. We're quite impressed with their determination and positive attitude in their activities. Best wishes for them.”</p>
                             <div class="author-info">
-                                <div class="thumb"><img src="assets/media/testimonial/testimonial-1.png"
-                                        alt="Google Review"></div>
-                                <div class="content"><span class="name">Darrell Steward</span><span
-                                        class="designation">Executive Chairman</span></div>
+                                <div class="thumb"></div>
+                                <div class="content"><span class="name">Nafisa Noor Ahona
+                                </span><span
+                                        class="designation">Nikunjo Official
+                                    </span></div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4" data-sal="slide-up" data-sal-duration="1000" data-sal-delay="200">
                         <div class="testimonial-grid"><span class="social-media"><img
-                                    src="assets/media/icon/google-2.png" alt="google"></span>
-                            <p>“ Donec metus lorem, vulputate at sapien sit amet, auctor iaculis lorem. In vel hendrerit
-                                nisi. Vestibulum eget risus velit. ”</p>
+                                    src="assets/media/upward.png" style="width: 70px; border-radius: 100px; " alt="google"></span>
+                            <p>“  Our website was created and developed by IonicByte. We are very much satisfied with their professional service and wish them a good luck for their upcoming journey ”</p>
                             <div class="author-info">
-                                <div class="thumb"><img src="assets/media/testimonial/testimonial-2.png"
-                                        alt="Google Review"></div>
-                                <div class="content"><span class="name">Savannah Nguyen</span><span
-                                        class="designation">Executive Chairman</span></div>
+                                <div class="thumb"></div>
+                                <div class="content"><span class="name">Tanzim Islam Ushan
+                                </span><span
+                                        class="designation">Upward Bangladesh
+                                    </span></div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4" data-sal="slide-up" data-sal-duration="1000" data-sal-delay="300">
-                        <div class="testimonial-grid"><span class="social-media"><img src="assets/media/icon/fb-2.png"
-                                    alt="Facebook"></span>
-                            <p>“ Donec metus lorem, vulputate at sapien sit amet, auctor iaculis lorem. In vel hendrerit
-                                nisi. Vestibulum eget risus velit. ”</p>
-                            <div class="author-info">
-                                <div class="thumb"><img src="assets/media/testimonial/testimonial-3.png"
-                                        alt="Google Review"></div>
-                                <div class="content"><span class="name">Floyd Miles</span><span
-                                        class="designation">Executive Chairman</span></div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
             <ul class="shape-group-4 list-unstyled">
                 <li class="shape-1"><img src="assets/media/others/bubble-1.png" alt="Bubble"></li>
             </ul>
         </section>
-        <section class="section bg-color-light section-padding">
+        <!-- <section class="section bg-color-light section-padding">
             <div class="container">
                 <div class="section-heading mb-0"><span class="subtitle">Pricing Plan</span>
                     <h2 class="title">Find the Right Plan.</h2>
@@ -673,8 +692,8 @@
                 <li class="shape shape-2"><img src="assets/media/others/bubble-4.png" alt="shape"></li>
                 <li class="shape shape-3"><img src="assets/media/others/hand-1.png" alt="shape"></li>
             </ul>
-        </section>
-        <section class="section section-padding bg-color-dark">
+        </section> -->
+        <!-- <section class="section section-padding bg-color-dark">
             <div class="container">
                 <div class="section-heading heading-light-left"><span class="subtitle">Top Clients</span>
                     <h2 class="title">We’ve built solutions for...</h2>
