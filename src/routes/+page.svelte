@@ -455,8 +455,8 @@
                                 <div class="thumbnail"><img
                                             src="assets/media/project/DM-1.jpg" alt="project"></div>
                                 <div class="content">
-                                    <h4 class="title">Social Engagement</h4><span
-                                        class="subtitle">Design, Development</span>
+                                    <h4 class="title">Facebook Marketing</h4><span
+                                        class="subtitle">A Facebook Ads campaign which gave them more ROI than their expectations.</span>
                                 </div>
                             </div>
                         </div>
@@ -465,8 +465,8 @@
                                 <div class="thumbnail"><img
                                             src="assets/media/project/DM-2.jpg" alt="project"></div>
                                 <div class="content">
-                                    <h4 class="title">Web Application</h4><span
-                                        class="subtitle">Logo, Webapp, App</span>
+                                    <h4 class="title">Google Ads Marketing</h4><span
+                                        class="subtitle">A Google ads campaign where we made the perfect ad and it blew their stock in just 100$ investment.</span>
                                 </div>
                             </div>
                         </div>
