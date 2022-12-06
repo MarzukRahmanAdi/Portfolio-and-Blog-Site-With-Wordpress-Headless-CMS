@@ -1,31 +1,49 @@
 
-<script>
+<script >
         let blogs = [
 
         ];
 
 
             const fetchPosts = async () => {
-                await fetch('https://content.ionicbyte.com/wp-json/wp/v2/posts')
+                await fetch('https://content.ionicbyte.com/wp-json/wp/v2/posts?per_page=4')
                 .then((response) => response.json())
                 .then((data) =>{
-                console.log(data);
+                // console.log(data);
                 data.map(async (d) =>{
-                    const imgDetails = await fetch(`https://content.ionicbyte.com/wp-json/wp/v2/media/${d.featured_media}`).then( res => res.json()).then(data2 => { console.log(data2) ;
+                    const imgDetails = await fetch(`https://content.ionicbyte.com/wp-json/wp/v2/media/${d.featured_media}`).then( res => res.json()).then(data2 => { 
+                        // console.log(data2) ;
                     if (data2.guid) return {src : data2.guid.rendered, alt : data2.alt_text}
                     });
-                    console.log(imgDetails);
+                    // console.log(imgDetails);
                     if(!imgDetails) return;
                     blogs = [ ...blogs, {data :d, imageDetails :imgDetails} ]
-                    console.log(blogs);
+                    // console.log(blogs);
                 })
             });
             }
              fetchPosts();
+            export let data;
+                let sanity_projects = data.project
+                import imageUrlBuilder from '@sanity/image-url'
+
+                // Get a pre-configured url-builder from your sanity client
+                const builder = imageUrlBuilder(data.client)
+
+                // Then we like to make a simple function like this that gives the
+                // builder an image and returns the builder for you to specify additional
+                // parameters:
+                function urlFor(source) {
+                    return builder.image(source)
+                }
+
+            console.log("-----------------------------------------------------");
+
+            console.log(data.project);
+            console.log(sanity_projects)
+            let seeMore = false;
 
 
-    console.log(blogs)
-    
     
 
 </script>
@@ -46,6 +64,20 @@
     <link rel="stylesheet" href="assets/css/vendor/green-audio-player.min.css">
     <link rel="stylesheet" href="assets/css/app.css">
 </head>
+
+<style>
+    .btn-seeMore{
+        padding-left:20px; padding-right: 20px; padding-top: 10px; padding-bottom: 10px; background-color: #7200ea; color: white; border-radius: 50px; text-align: center; 
+    }
+    .btn-seeMore:hover{
+        transition: 500ms ease-in-out;
+        transform: scale(1.2);
+        color: rgb(236, 244, 255);
+    }
+    .btn-seeMoreContainer{
+        display: flex; justify-content: center; width: 100%;
+    }
+</style>
 
 <body class="sticky-header"><a href="#main-wrapper" id="backto-top" class="back-to-top"><i
             class="far fa-angle-double-up"></i></a>
@@ -403,7 +435,7 @@
                                 class="filter-text">All Works</span></button><button data-filter=".branding"><span
                                 class="filter-text">Branding</span></button><button data-filter=".mobile"><span
                                 class="filter-text">Mobile</span></button></div> -->
-                    <div class="row row-35 isotope-list">
+                    <div class="row row-35 ">
                         <div class="col-md-6 project branding">
                             <div class="project-grid">
                                 <div class="thumbnail"><img
@@ -496,7 +528,26 @@
                                 </div>
                             </div>
                         </div>  
+                        {#if seeMore === true}
+                            {#each sanity_projects as dt}
+                         <div class="col-md-6 project branding">
+                            <div class="project-grid">
+                                <div class="thumbnail"><img
+                                            src={dt.imageUrl} alt="project"></div>
+                                <div class="content">
+                                    <h4 class="title">{dt.title}</h4><span
+                                        class="subtitle">{dt.Desc}</span>
+                                </div>
+                            </div>
+                        </div>
+                            {/each}
+                        {/if}
                     </div>
+                    {#if seeMore === false}
+                    <div class="btn-seeMoreContainer">
+                        <button class="btn btn-seeMore" on:click={()=>{seeMore = true}} >See more</button>
+                    </div>
+                    {/if}
                 </div>
             </div>
             <ul class="shape-group-7 list-unstyled">
@@ -907,9 +958,9 @@
                                         <h6 class="widget-title">Support</h6>
                                         <div class="footer-menu-link">
                                             <ul class="list-unstyled">
-                                                <li><a href="/">Contact</a></li>
-                                                <li><a href="/">Privacy Policy</a></li>
-                                                <li><a href="/">Terms of Use</a></li>
+                                                <li><a href="#contact">Contact</a></li>
+                                                <li><a href="/privacy">Privacy Policy</a></li>
+                                                <li><a href="/terms">Terms & Condition</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -922,13 +973,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="footer-copyright"><span class="copyright-text">© 2022 All rights reserved by <a
-                                        href="https://iam-adi.xyz/">Adi</a>.</span></div>
+                                        href="#">IonicByte</a>.</span></div>
                         </div>
                         <div class="col-md-6">
                             <div class="footer-bottom-link">
                                 <ul class="list-unstyled">
-                                    <li><a href="/">Privacy Policy</a></li>
-                                    <li><a href="/">Terms of Use</a></li>
+                                    <li><a href="/privacy">Privacy Policy</a></li>
+                                    <li><a href="/terms">Terms & Condition</a></li>
                                 </ul>
                             </div>
                         </div>

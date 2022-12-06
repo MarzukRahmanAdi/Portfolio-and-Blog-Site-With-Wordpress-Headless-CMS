@@ -479,7 +479,7 @@ async function showBlog(id){
 }
 
 if(window.location.search === ''){
-    showAllBlogs()
+    // showAllBlogs()
 } else{
     showBlog(window.location.search.substring(window.location.search.lastIndexOf('=') + 1))
 }

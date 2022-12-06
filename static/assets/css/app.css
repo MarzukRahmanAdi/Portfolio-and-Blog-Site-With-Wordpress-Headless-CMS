@@ -53,7 +53,7 @@ STYLESHEET INDEXING
 /*-------------------------
     Variables
 -------------------------*/
-@import url("../../../../../css2.css");
+/* @import url("../../../../../css2.css"); */
 
 :root {
     --color-primary: #5956E9;
