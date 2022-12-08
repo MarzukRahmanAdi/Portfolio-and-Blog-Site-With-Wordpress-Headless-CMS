@@ -1,51 +1,7 @@
-
-<script >
-        let blogs = [
-
-        ];
-
-
-            const fetchPosts = async () => {
-                await fetch('https://content.ionicbyte.com/wp-json/wp/v2/posts?per_page=4')
-                .then((response) => response.json())
-                .then((data) =>{
-                // console.log(data);
-                data.map(async (d) =>{
-                    const imgDetails = await fetch(`https://content.ionicbyte.com/wp-json/wp/v2/media/${d.featured_media}`).then( res => res.json()).then(data2 => { 
-                        // console.log(data2) ;
-                    if (data2.guid) return {src : data2.guid.rendered, alt : data2.alt_text}
-                    });
-                    // console.log(imgDetails);
-                    if(!imgDetails) return;
-                    blogs = [ ...blogs, {data :d, imageDetails :imgDetails} ]
-                    // console.log(blogs);
-                })
-            });
-            }
-             fetchPosts();
-            export let data;
-                let sanity_projects = data.project
-                import imageUrlBuilder from '@sanity/image-url'
-
-                // Get a pre-configured url-builder from your sanity client
-                const builder = imageUrlBuilder(data.client)
-
-                // Then we like to make a simple function like this that gives the
-                // builder an image and returns the builder for you to specify additional
-                // parameters:
-                function urlFor(source) {
-                    return builder.image(source)
-                }
-
-            console.log("-----------------------------------------------------");
-
-            console.log(data.project);
-            console.log(sanity_projects)
-            let seeMore = false;
-
-
-    
-
+<script>   
+export let data;
+// let sanity_projects = data.project
+let seeMore = false;
 </script>
 
 <head>
@@ -201,8 +157,9 @@
                         <div class="services-grid active">
                             <div class="thumbnail"><img src="assets/media/icon/icon-1.png" alt="icon"></div>
                             <div class="content">
-                                <h5 class="title"><a href="/">Web Design</a></h5>
-                                <p>A beautiful web design is mandatory to create your brand awareness.</p>
+                                <h5 class="title"><a href="/">Web Development</a></h5>
+                                <p>An aesthetic website or webapp is mandatory to create your brand awareness. Without an extra ordinary user experience they won't be permanent loyal customers.
+                                    Lets give them a better place to ride on.</p>
                             </div>
                         </div>
                     </div>
@@ -210,9 +167,10 @@
                         <div class="services-grid">
                             <div class="thumbnail"><img src="assets/media/icon/icon-2.png" alt="icon"></div>
                             <div class="content">
-                                <h5 class="title"><a href="/">Web Development</a></h5>
-                                <p>Withour an extra ordinary user experience you won't gain permanent loyal customers.
-                                    Lets give them a better place to ride on.</p>
+                                <h5 class="title"><a href="/">SEO</a></h5>
+                                <p>SEO is the process of improving the visibility and ranking of a website or web page in search engines through the use of various techniques and strategies. 
+                                    In simple terms, SEO is just the way to show people your products on google search when they search certain words.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -866,7 +824,7 @@
                     <p></p>
                 </div>
                 <div class="row g-0" id="blogSection">
-                    {#each blogs as blog}
+                    {#each data.blogPosts as blog}
                     <!-- <p>{blog.data.title.rendered.substring(0,90)}</p> -->
                             <div class="col-xl-6">
                                 <div class="blog-list active">
