@@ -23,12 +23,18 @@ export async function load() {
     // }
     let BlogPosts = await getPosts("https://content.ionicbyte.com", 4);
     let blogPostsWithImages = await getImages(BlogPosts, "https://content.ionicbyte.com")
-    console.log(blogPostsWithImages);
+    // https://case.ionicbyte.com/wp
+    let caseStudy = await getPosts("https://case.ionicbyte.com/wp", 4);
+    console.log(caseStudy);
+    let caseStudyWithImages = await getImages(caseStudy, "https://case.ionicbyte.com/wp")
+
+    // console.log(caseStudyWithImages);
     return {
         // project: data,
         // client: client
         // posts: blogPostsWithImages,
-        blogPosts: blogPostsWithImages
+        blogPosts: blogPostsWithImages,
+        // caseStudy : caseStudyWithImages
     };
     // return {
     //   status: 500,
@@ -36,6 +42,13 @@ export async function load() {
     // };
 }
 // // get()
+
+
+
+
+
+
+
 
 const getPosts = async (domain, number) => {
     let dataRes = await fetch(
@@ -67,3 +80,5 @@ const getImages = async (posts, domain) => {
     }));
     return result;
 };
+
+

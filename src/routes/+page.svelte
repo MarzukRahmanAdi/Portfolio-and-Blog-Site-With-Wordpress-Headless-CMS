@@ -385,6 +385,137 @@ let seeMore = false;
 
         <section class="section section-padding-2">
             <div class="container">
+                <div class="section-heading heading-left mb--40"><span class="subtitle">Featured case-study</span>
+                    <h2 class="title">Some of our<br>finest work.</h2>
+                </div>
+                <div class="axil-isotope-wrapper">
+                    <!-- <div class="isotope-button isotope-project-btn"><button data-filter="*" class="is-checked"><span
+                                class="filter-text">All Works</span></button><button data-filter=".branding"><span
+                                class="filter-text">Branding</span></button><button data-filter=".mobile"><span
+                                class="filter-text">Mobile</span></button></div> -->
+                    <div class="row row-35 ">
+                        <div class="col-md-6 project branding">
+                            <div class="project-grid">
+                                <div class="thumbnail"><img
+                                            src="assets/media/project/blur.jpg" alt="project"></div>
+                                <div class="content">
+                                    <h4 class="title">A Cryptography Website</h4><span
+                                        class="subtitle">A website where people can come and create, buy and sell their own Crypto [ Nextjs(Front-end), Expressjs(RestApi), Laravel(Websocket and Storage) ] </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 project mobile">
+                            <div class="project-grid">
+                                <div class="thumbnail"><img
+                                            src="assets/media/project/web-2.jpg" alt="project"></div>
+                                <div class="content">
+                                    <h4 class="title">Digital Art Learning Site</h4><span
+                                        class="subtitle">A website where people reads and learns digital art and admin uploads content from our
+                                        hand made CMS [ Reactjs, TailwindCSS, Expressjs, MongoDB ]
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 project branding">
+                            <div class="project-grid">
+                                <div class="thumbnail"><img
+                                            src="assets/media/project/3.webp" alt="project"></div>
+                                <div class="content">
+                                    <h4 class="title">Fitness Website</h4><span
+                                        class="subtitle">A web app where people buys membership and completes tasks, 
+                                        gets diet plan and watches videos of workout [Nextjs, Laravel, PostgreSQL, Cloudinary]
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 project mobile">
+                            <div class="project-grid">
+                                <div class="thumbnail"><img
+                                            src="assets/media/project/4.png" alt="project"></div>
+                                <div class="content">
+                                    <h4 class="title">Ecommerce App</h4><span
+                                        class="subtitle">A app where people orders products from. An Admin uploads products and manages orders from another
+                                        Admin App [ Flutter, Firebase ]
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 project branding">
+                            <div class="project-grid">
+                                <div class="thumbnail"><img
+                                            src="assets/media/project/DM-1.jpg" alt="project"></div>
+                                <div class="content">
+                                    <h4 class="title">Facebook Marketing</h4><span
+                                        class="subtitle">A Facebook Ads campaign which gave them more ROI than their expectations.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 project mobile">
+                            <div class="project-grid">
+                                <div class="thumbnail"><img
+                                            src="assets/media/project/DM-2.jpg" alt="project"></div>
+                                <div class="content">
+                                    <h4 class="title">Google Ads Marketing</h4><span
+                                        class="subtitle">A Google ads campaign where we made the perfect ad and it blew their stock in just 100$ investment.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 project mobile">
+                            <div class="project-grid">
+                                <div class="thumbnail"><img
+                                            src="assets/media/project/poster.jpg" style="width:610x; height:460px; object-fit: cover;"  alt="project"></div>
+                                <div class="content">
+                                    <h4 class="title">Social Media Marketing</h4><span
+                                        class="subtitle">We designed their all the posters and did organic marketing as well as Paid Boosting 
+                                        to grow brand awareness about their coaching centre.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 project mobile">
+                            <div class="project-grid">
+                                <div class="thumbnail">
+                                    <video style=" background-color: black;" width="610" height="460" controls>
+                                        <source src="assets/media/project/cyan.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                <div class="content">
+                                    <h4 class="title">Video ad</h4><span
+                                        class="subtitle">Our marketing team made this video with Adobe After Effects <aside></aside> their facebook ad.</span>
+                                </div>
+                            </div>
+                        </div>  
+                        {#if seeMore === true}
+                            {#each sanity_projects as dt}
+                         <div class="col-md-6 project branding">
+                            <div class="project-grid">
+                                <div class="thumbnail"><img
+                                            src={dt.imageUrl} alt="project"></div>
+                                <div class="content">
+                                    <h4 class="title">{dt.title}</h4><span
+                                        class="subtitle">{dt.Desc}</span>
+                                </div>
+                            </div>
+                        </div>
+                            {/each}
+                        {/if}
+                    </div>
+                    {#if seeMore === false}
+                    <div class="btn-seeMoreContainer">
+                        <button class="btn btn-seeMore" on:click={()=>{seeMore = true}} >See more</button>
+                    </div>
+                    {/if}
+                </div>
+            </div>
+            <ul class="shape-group-7 list-unstyled">
+                <li class="shape shape-1"><img src="assets/media/others/circle-2.png" alt="circle"></li>
+                <li class="shape shape-2"><img src="assets/media/others/bubble-2.png" alt="Line"></li>
+                <li class="shape shape-3"><img src="assets/media/others/bubble-1.png" alt="Line"></li>
+            </ul>
+        </section>
+        <section class="section section-padding-2">
+            <div class="container">
                 <div class="section-heading heading-left mb--40"><span class="subtitle">Our Project</span>
                     <h2 class="title">Some of our<br>finest work.</h2>
                 </div>
@@ -832,7 +963,7 @@ let seeMore = false;
                                                 src={blog.imageDetails.src} alt={blog.imageDetails.alt}></a></div>
                                     <div class="post-content">
                                         <h5 class="title"><a href="/blog.html?id={blog.data.id}">{blog.data.title.rendered}</a></h5>
-                                        <p>{blog.data.title.rendered.substring(0,90)}...</p><a href="/blog?id=${blog.data.id}" class="more-btn">Learn more<i
+                                        <p>{blog.data.title.rendered.substring(0,90)}...</p><a href="/blog?id={blog.data.id}" class="more-btn">Learn more<i
                                                 class="far fa-angle-right"></i></a>
                                     </div>
                                 </div>
