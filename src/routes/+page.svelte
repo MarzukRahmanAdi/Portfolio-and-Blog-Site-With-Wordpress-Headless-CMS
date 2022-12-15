@@ -645,6 +645,38 @@ let seeMore = false;
                 <li class="shape shape-3"><img src="assets/media/others/bubble-1.png" alt="Line"></li>
             </ul>
         </section>
+        <section class="section section-padding-2">
+            <div class="container">
+                <div class="section-heading heading-left mb--40"><span class="subtitle">Our Project</span>
+                    <h2 class="title">Some of our<br>Case Studies.</h2>
+                </div>
+                <div class="axil-isotope-wrapper">
+                    <!-- <div class="isotope-button isotope-project-btn"><button data-filter="*" class="is-checked"><span
+                                class="filter-text">All Works</span></button><button data-filter=".branding"><span
+                                class="filter-text">Branding</span></button><button data-filter=".mobile"><span
+                                class="filter-text">Mobile</span></button></div> -->
+                        {#each data.caseStudy as dt}
+                            <div class="col-md-6 project branding">
+                                <a href="/blog?id={dt.data.id}">
+                                    <div class="project-grid">
+                                        <div class="thumbnail"><img
+                                                    src={dt.imageDetails.src} alt={dt.imageDetails.alt}></div>
+                                        <div class="content">
+                                            <h4 class="title">{dt.data.title.rendered}</h4><span
+                                                class="subtitle">{dt.content.rendered}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        {/each}
+                  
+            </div>
+            <ul class="shape-group-7 list-unstyled">
+                <li class="shape shape-1"><img src="assets/media/others/circle-2.png" alt="circle"></li>
+                <li class="shape shape-2"><img src="assets/media/others/bubble-2.png" alt="Line"></li>
+                <li class="shape shape-3"><img src="assets/media/others/bubble-1.png" alt="Line"></li>
+            </ul>
+        </section>
         <!-- <section class="section section-padding bg-color-dark">
             <div class="container">
                 <div class="section-heading heading-light"><span class="subtitle">Featured Case Study</span>
