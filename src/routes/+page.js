@@ -28,13 +28,13 @@ export async function load() {
     console.log(caseStudy);
     let caseStudyWithImages = await getImages(caseStudy, "https://case.ionicbyte.com/wp")
 
-    // console.log(caseStudyWithImages);
+    console.log(caseStudyWithImages);
     return {
         // project: data,
         // client: client
         // posts: blogPostsWithImages,
         blogPosts: blogPostsWithImages,
-        // caseStudy : caseStudyWithImages
+        caseStudy : caseStudyWithImages 
     };
     // return {
     //   status: 500,

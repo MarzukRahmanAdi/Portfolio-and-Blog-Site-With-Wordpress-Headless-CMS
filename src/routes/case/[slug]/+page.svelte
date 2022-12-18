@@ -2,11 +2,6 @@
     import { page } from '$app/stores';
   console.log($page.params)
   export let data;
-  let blogPost = data.post;
-  console.log(blogPost);
-  let contents = JSON.stringify(data.post.data.content.rendered)  
-    console.log(contents);
-   
     // if (typeof window !== 'undefined') {
     //     window.$("#BlogPara").html(contents) 
     // }
@@ -130,10 +125,10 @@
                 <div class="breadcrumb">
                     <ul class="list-unstyled">
                         <li><a href="/">Home</a></li>
-                        <li class="active">Blog</li>
+                        <li class="active">Case Studies</li>
                     </ul>
                     {#if data.post}
-                        <h1 id="BlogTitle" class="title h2">{data.post.data.title.rendered}</h1>  
+                        <h1 id="BlogTitle" class="title h2">{@html data.post.data.title.rendered}</h1>  
                     {:else}
                         <h1 id="BlogTitle" class="title h2">Loading....</h1>
                     {/if}
@@ -328,8 +323,8 @@
                                         <div class="footer-menu-link">
                                             <ul class="list-unstyled">
                                                 <li><a href="/">Contact</a></li>
-                                                <li><a href="/">Privacy Policy</a></li>
-                                                <li><a href="/">Terms of Use</a></li>
+                                                <li><a href="/privacy">Privacy Policy</a></li>
+                                                <li><a href="/terms">Terms of Use</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -347,8 +342,8 @@
                         <div class="col-md-6">
                             <div class="footer-bottom-link">
                                 <ul class="list-unstyled">
-                                    <li><a href="/">Privacy Policy</a></li>
-                                    <li><a href="/">Terms of Use</a></li>
+                                    <li><a href="/privacy">Privacy Policy</a></li>
+                                    <li><a href="/terms">Terms of Use</a></li>
                                 </ul>
                             </div>
                         </div>
