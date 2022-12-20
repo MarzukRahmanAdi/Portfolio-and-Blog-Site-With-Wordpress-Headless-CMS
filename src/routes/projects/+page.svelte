@@ -1,7 +1,25 @@
 <script>
     import { onMount } from 'svelte/internal';
+    import sanityClient from "@sanity/client";
 
-    onMount(() => {
+    const client = sanityClient({
+        projectId: "ilayca33",
+        dataset: "production",
+        apiVersion: "2021-10-21",
+        useCdn: false
+    });
+
+
+    let projects;
+
+
+    onMount(async() => {
+        projects = await client.fetch(`*[_type == "project"]{
+            Desc,
+            title,
+            "imageUrl": poster.asset->url
+        }`);
+
         var my_time;
 		var count = 0;
 		function pageScroll() {
@@ -22,11 +40,12 @@
 		}
 
 		setTimeout(pageScroll, 1200);
+    
     });
 
 
     const array = new Array(30).fill(0);
-
+    // console.log(data.projects);
 </script>
 
     <head>
@@ -146,10 +165,10 @@
                                     </div>
                                     <ul class="mainmenu">
                                         <li><a href="/">Home</a></li>
-                                        <li><a href="#services">Services</a></li>
-                                        <li><a href="#projects">Why Us</a></li>
-                                        <li><a href="#contact">Contact</a></li>
-                                        <li><a href="#blogs">Stories</a></li>
+                                        <li><a href="/#services">Services</a></li>
+                                        <li><a href="/#projects">Why Us</a></li>
+                                        <li><a href="/#contact">Contact</a></li>
+                                        <li><a href="/#blogs">Stories</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -181,19 +200,21 @@
                 <div class="scroll-text" id="data">
                 
                     <div class="row row-35 ">
-                    
-                    {#each array as x}
+                    {#if projects}
+                         
+                    {#each projects as project}
                     <div class="col-md-4 project branding" style="display: flex; justify-content:center;">
                         <div class="project-grid" style="width: 80%;">
                             <div class="thumbnail"><img
-                                        src="assets/media/project/blur.jpg" alt="project"></div>
+                                        src="{project.imageUrl}" alt="project"></div>
                             <div class="content">
-                                <h4 class="title">A Cryptography Website</h4><span
-                                    class="subtitle">A website where people can come and create, buy and sell their own Crypto [ Nextjs(Front-end), Expressjs(RestApi), Laravel(Websocket and Storage) ] </span>
+                                <h4 class="title">{project.title}</h4><span
+                                    class="subtitle">{project.Desc}</span>
                             </div>
                         </div>
                     </div>
                     {/each}
+                    {/if}
                         
                     </div>
                 </div>
@@ -266,7 +287,7 @@
                                             <h6 class="widget-title">Support</h6>
                                             <div class="footer-menu-link">
                                                 <ul class="list-unstyled">
-                                                    <li><a href="#contact">Contact</a></li>
+                                                    <li><a href="/#contact">Contact</a></li>
                                                     <li><a href="/privacy">Privacy Policy</a></li>
                                                     <li><a href="/terms">Terms & Condition</a></li>
                                                 </ul>

@@ -1,3 +1,32 @@
+<script>
+    import { page } from '$app/stores';
+  import { onMount } from 'svelte';
+//   // console.log($page.params)
+
+    const getOneBlog = async (domain, postId) => {
+        const response = await fetch(`${domain}/wp-json/wp/v2/posts/${postId}`);
+        const post = await response.json();
+        const mediaId = post.featured_media;
+        const mediaResponse = await fetch(`${domain}/wp-json/wp/v2/media/${mediaId}`);
+        const media = await mediaResponse.json();
+        const mediaLink = {imgSrc : media.guid.rendered, altText: media.alt_text}
+        return { data: post, imageDetails: mediaLink }
+    }
+
+    let blogPost;
+    onMount(async()=>{
+        blogPost = await getOneBlog("https://content.ionicbyte.com", $page.url.searchParams.get("id"))
+    })
+
+    console.log(blogPost)
+//   // console.log(blogPost);
+    // // console.log(contents);
+   
+    // if (typeof window !== 'undefined') {
+    //     window.$("#BlogPara").html(contents) 
+    // }
+</script>
+
 
 <head>
     <!-- Meta Data -->
@@ -7,17 +36,17 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/media/favicon.png">
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/font-awesome.css">
-    <link rel="stylesheet" href="assets/css/vendor/slick.css">
-    <link rel="stylesheet" href="assets/css/vendor/slick-theme.css">
-    <link rel="stylesheet" href="assets/css/vendor/sal.css">
-    <link rel="stylesheet" href="assets/css/vendor/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/vendor/green-audio-player.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/media/favicon.png">
+    <link rel="stylesheet" href="/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/vendor/font-awesome.css">
+    <link rel="stylesheet" href="/assets/css/vendor/slick.css">
+    <link rel="stylesheet" href="/assets/css/vendor/slick-theme.css">
+    <link rel="stylesheet" href="/assets/css/vendor/sal.css">
+    <link rel="stylesheet" href="/assets/css/vendor/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/css/vendor/green-audio-player.min.css">
 
     <!-- Site Stylesheet -->
-    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
 
 </head>
 
@@ -59,18 +88,18 @@
                 <div class="container">
                     <div class="header-navbar">
                         <div class="header-logo"><a href="/"><img class="light-version-logo"
-                                    src="IonicByte-png.png"
+                                    src="/IonicByte-png.png"
                                     style="width:200px;" alt="logo"></a><a href="/"><img
-                                    class="dark-version-logo" width="150" src="IonicByte-png.png" alt="logo"></a><a
-                                href="/"><img class="sticky-logo" width="150" src="IonicByte-png.png"
+                                    class="dark-version-logo" width="150" src="/IonicByte-png.png" alt="logo"></a><a
+                                href="/"><img class="sticky-logo" width="150" src="/IonicByte-png.png"
                                     alt="logo"></a></div>
                         <div class="header-main-nav">
                             <nav class="mainmenu-nav" id="mobilemenu-popup">
                                 <div class="d-block d-lg-none">
                                     <div class="mobile-nav-header">
                                         <div class="mobile-nav-logo"><a href="/"><img class="light-mode" width="150"
-                                                    src="assets/media/logo-2.png" alt="Site Logo"> <img
-                                                    class="dark-mode" src="assets/media/logo-3.png" width="150" alt="Site Logo"></a>
+                                                    src="/assets/media/logo-2.png" alt="Site Logo"> <img
+                                                    class="dark-mode" src="/assets/media/logo-3.png" width="150" alt="Site Logo"></a>
                                         </div><button class="mobile-menu-close" data-bs-dismiss="offcanvas"><i
                                                 class="fas fa-times"></i></button>
                                     </div>
@@ -118,13 +147,17 @@
                         <li><a href="/">Home</a></li>
                         <li class="active">Blog</li>
                     </ul>
-                    <h1 id="BlogTitle" class="title h2">How to Increase Your ROI Through scientific SEM?</h1>
+                    {#if blogPost}
+                        <h1 id="BlogTitle" class="title h2">{blogPost.data.title.rendered}</h1>  
+                    {:else}
+                        <h1 id="BlogTitle" class="title h2">Loading....</h1>
+                    {/if}
                 </div>
             </div>
             <ul class="shape-group-8 list-unstyled">
-                <li class="shape shape-1" data-sal="slide-right" data-sal-duration="500" data-sal-delay="100"><img src="assets/media/others/bubble-9.png" alt="Bubble"></li>
-                <li class="shape shape-2" data-sal="slide-left" data-sal-duration="500" data-sal-delay="200"><img src="assets/media/others/bubble-11.png" alt="Bubble"></li>
-                <li class="shape shape-3" data-sal="slide-up" data-sal-duration="500" data-sal-delay="300"><img src="assets/media/others/line-4.png" alt="Line"></li>
+                <li class="shape shape-1" data-sal="slide-right" data-sal-duration="500" data-sal-delay="100"><img src="/assets/media/others/bubble-9.png" alt="Bubble"></li>
+                <li class="shape shape-2" data-sal="slide-left" data-sal-duration="500" data-sal-delay="200"><img src="/assets/media/others/bubble-11.png" alt="Bubble"></li>
+                <li class="shape shape-3" data-sal="slide-up" data-sal-duration="500" data-sal-delay="300"><img src="/assets/media/others/line-4.png" alt="Line"></li>
             </ul>
         </div>
         <!--=====================================-->
@@ -137,10 +170,17 @@
                         <div class="single-blog">
                             <div class="single-blog-content blog-grid">
                                 <div class="post-thumbnail">
-                                    <img src="assets/media/placeholder.webp" style="width: 850px !important ;height: 450px !important; object-fit: cover;" id="BlogImage" alt="Blog">
+                                   
+                                    {#if blogPost}
+                                        <img src={blogPost.imageDetails.imgSrc} style="width: 850px !important ;height: 450px !important; object-fit: cover;" id="BlogImage" alt="Blog">
+                                    {:else}
+                                        <img src="/assets/media/placeholder.webp" style="width: 850px !important ;height: 450px !important; object-fit: cover;" id="BlogImage" alt="Blog">    
+                                    {/if}
                                 </div>
                                 <div id="BlogPara">
-
+                                    {#if blogPost}
+                                        {@html blogPost.data.content.rendered}
+                                    {/if}
                                 </div>
                                 
                             </div>
@@ -179,7 +219,7 @@
                             </div>
                             <div class="widget widget-banner-ad">
                                 <a href="#">
-                                    <img src="assets/media/banner/widget-banner.png" alt="banner">
+                                    <img src="/assets/media/banner/widget-banner.png" alt="banner">
                                 </a>
                             </div>
                         </div>
@@ -204,36 +244,36 @@
                     </div>
                     <div class="thumbnail">
                         <div class="larg-thumb" data-sal="zoom-in" data-sal-duration="600" data-sal-delay="100">
-                            <img src="assets/media/others/pc.png" alt="Computer">
+                            <img src="/assets/media/others/pc.png" alt="Computer">
                         </div>
                         <ul class="list-unstyled small-thumb">
                             <li class="shape shape-1" data-sal="slide-right" data-sal-duration="800" data-sal-delay="400">
-                                <img src="assets/media/others/comment.png" alt="Comments">
+                                <img src="/assets/media/others/comment.png" alt="Comments">
                             </li>
                             <li class="shape shape-2" data-sal="slide-up" data-sal-duration="800" data-sal-delay="300">
-                                <img src="assets/media/others/keyboard.png" alt="Comments">
+                                <img src="/assets/media/others/keyboard.png" alt="Comments">
                             </li>
                             <li class="shape shape-3" data-sal="slide-right" data-sal-duration="800" data-sal-delay="300">
-                                <img src="assets/media/others/mouse.png" alt="Comments">
+                                <img src="/assets/media/others/mouse.png" alt="Comments">
                             </li>
                             <li class="shape shape-4" data-sal="slide-left" data-sal-duration="800" data-sal-delay="300">
-                                <img src="assets/media/others/bell-icon.png" alt="Comments">
+                                <img src="/assets/media/others/bell-icon.png" alt="Comments">
                             </li>
                             <li class="shape shape-5" data-sal="zoom-in" data-sal-duration="800" data-sal-delay="200">
-                                <img src="assets/media/others/chat-bot.png" alt="Comments">
+                                <img src="/assets/media/others/chat-bot.png" alt="Comments">
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
             <ul class="list-unstyled shape-group-9">
-                <li class="shape shape-1"><img src="assets/media/others/bubble-12.png" alt="Comments"></li>
-                <li class="shape shape-2"><img src="assets/media/others/bubble-16.png" alt="Comments"></li>
-                <li class="shape shape-3"><img src="assets/media/others/bubble-13.png" alt="Comments"></li>
-                <li class="shape shape-4"><img src="assets/media/others/bubble-14.png" alt="Comments"></li>
-                <li class="shape shape-5"><img src="assets/media/others/bubble-16.png" alt="Comments"></li>
-                <li class="shape shape-6"><img src="assets/media/others/bubble-15.png" alt="Comments"></li>
-                <li class="shape shape-7"><img src="assets/media/others/bubble-16.png" alt="Comments"></li>
+                <li class="shape shape-1"><img src="/assets/media/others/bubble-12.png" alt="Comments"></li>
+                <li class="shape shape-2"><img src="/assets/media/others/bubble-16.png" alt="Comments"></li>
+                <li class="shape shape-3"><img src="/assets/media/others/bubble-13.png" alt="Comments"></li>
+                <li class="shape shape-4"><img src="/assets/media/others/bubble-14.png" alt="Comments"></li>
+                <li class="shape shape-5"><img src="/assets/media/others/bubble-16.png" alt="Comments"></li>
+                <li class="shape shape-6"><img src="/assets/media/others/bubble-15.png" alt="Comments"></li>
+                <li class="shape shape-7"><img src="/assets/media/others/bubble-16.png" alt="Comments"></li>
             </ul>
         </section>
         <!--=====================================-->
@@ -381,24 +421,24 @@
     </div>
 
     <!-- Jquery Js -->
-    <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.min.js"></script>
-    <script src="assets/js/vendor/isotope.pkgd.min.js"></script>
-    <script src="assets/js/vendor/imagesloaded.pkgd.min.js"></script>
-    <script src="assets/js/vendor/waypoints.min.js"></script>
-    <script src="assets/js/vendor/counterup.js"></script>
-    <script src="assets/js/vendor/slick.min.js"></script>
-    <script src="assets/js/vendor/sal.js"></script>
-    <script src="assets/js/vendor/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/vendor/js.cookie.js"></script>
-    <script src="assets/js/vendor/jquery.style.switcher.js"></script>
-    <script src="assets/js/vendor/jquery.countdown.min.js"></script>
-    <script src="assets/js/vendor/tilt.js"></script>
-    <script src="assets/js/vendor/green-audio-player.min.js"></script>
+    <script src="/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="/assets/js/vendor/isotope.pkgd.min.js"></script>
+    <script src="/assets/js/vendor/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/js/vendor/waypoints.min.js"></script>
+    <script src="/assets/js/vendor/counterup.js"></script>
+    <script src="/assets/js/vendor/slick.min.js"></script>
+    <script src="/assets/js/vendor/sal.js"></script>
+    <script src="/assets/js/vendor/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/js/vendor/js.cookie.js"></script>
+    <script src="/assets/js/vendor/jquery.style.switcher.js"></script>
+    <script src="/assets/js/vendor/jquery.countdown.min.js"></script>
+    <script src="/assets/js/vendor/tilt.js"></script>
+    <script src="/assets/js/vendor/green-audio-player.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment.min.js"></script>
-    <script src="assets/js/vendor/jquery.nav.js"></script>
+    <script src="/assets/js/vendor/jquery.nav.js"></script>
 
     <!-- Site Scripts -->
-    <script src="assets/js/app.js"></script>
+    <script src="/assets/js/app.js"></script>
 </body>
 

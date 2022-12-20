@@ -377,8 +377,8 @@
 
 // const ContentData = fetch('https://content.ionicbyte.com/wp-json/wp/v2/posts').then( data => {
 //     $('#app').append(data.json())
-//     console.log(data.json())
-//     console.log(data.json().length)
+//     // console.log(data.json())
+//     // console.log(data.json().length)
 
 // })
 
@@ -387,13 +387,13 @@
 //     fetch('https://content.ionicbyte.com/wp-json/wp/v2/posts')
 //         .then((response) => response.json())
 //         .then((data) =>{
-//         console.log(data);
+//         // console.log(data);
 
 //         data.map(async (d) =>{
-//             const imgDetails = await fetch(`https://content.ionicbyte.com/wp-json/wp/v2/media/${d.featured_media}`).then( res => res.json()).then(data2 => { console.log(data2) ;
+//             const imgDetails = await fetch(`https://content.ionicbyte.com/wp-json/wp/v2/media/${d.featured_media}`).then( res => res.json()).then(data2 => { // console.log(data2) ;
 //             if (data2.guid) return {src : data2.guid.rendered, alt : data2.alt_text}
 //             });
-//             console.log(imgDetails);
+//             // console.log(imgDetails);
 //             if(!imgDetails) return;
 
 //             // $("#blogs").append(`hola hola 
@@ -414,96 +414,96 @@
 //             `);
 //         })
 //     });
-// } 
-async function showBlog(id){
-    fetch(`https://content.ionicbyte.com/wp-json/wp/v2/posts/${id}`)
-        .then((response) => response.json())
-        .then(async(data) =>{
-            console.log(data);
-            $("#BlogTitle").html(data.title.rendered)
-            $("#BlogPara").html(data.content.rendered)
+// // } 
+// async function showBlog(id){
+//     fetch(`https://content.ionicbyte.com/wp-json/wp/v2/posts/${id}`)
+//         .then((response) => response.json())
+//         .then(async(data) =>{
+//             // console.log(data);
+//             $("#BlogTitle").html(data.title.rendered)
+//             $("#BlogPara").html(data.content.rendered)
 
-            const imgDetails = await fetch(`https://content.ionicbyte.com/wp-json/wp/v2/media/${data.featured_media}`).then( res => res.json()).then(data2 => { console.log(data2) ;
-            if (data2.guid) return {src : data2.guid.rendered, alt : data2.alt_text}
-            });
-            $("#BlogImage").attr("src", imgDetails.src);
-            $("#BlogImage").attr("alt", imgDetails.alt);
-        })
+//             const imgDetails = await fetch(`https://content.ionicbyte.com/wp-json/wp/v2/media/${data.featured_media}`).then( res => res.json()).then(data2 => { // console.log(data2) ;
+//             if (data2.guid) return {src : data2.guid.rendered, alt : data2.alt_text}
+//             });
+//             $("#BlogImage").attr("src", imgDetails.src);
+//             $("#BlogImage").attr("alt", imgDetails.alt);
+//         })
 
-        fetch(`https://content.ionicbyte.com/wp-json/wp/v2/posts?exclude=${id}&per_page=3`)
-        .then((response) => response.json())
-        .then(async(data) =>{
-            console.log(id)
-            console.log(data);
-            data.map(async (d) =>{
-                const imgDetails = await fetch(`https://content.ionicbyte.com/wp-json/wp/v2/media/${d.featured_media}`).then( res => res.json()).then(data2 => { console.log(data2) ;
-                if (data2.guid) return {src : data2.guid.rendered, alt : data2.alt_text}
-                });
-                console.log(imgDetails);
-                if(!imgDetails) return;
+//         fetch(`https://content.ionicbyte.com/wp-json/wp/v2/posts?exclude=${id}&per_page=3`)
+//         .then((response) => response.json())
+//         .then(async(data) =>{
+//             // console.log(id)
+//             // console.log(data);
+//             data.map(async (d) =>{
+//                 const imgDetails = await fetch(`https://content.ionicbyte.com/wp-json/wp/v2/media/${d.featured_media}`).then( res => res.json()).then(data2 => { // console.log(data2) ;
+//                 if (data2.guid) return {src : data2.guid.rendered, alt : data2.alt_text}
+//                 });
+//                 // console.log(imgDetails);
+//                 if(!imgDetails) return;
                 
-                $("#recentTitle").html(d.title.rendered)
-                $("#recentTitle").attr("href", `/blog.html/${d.id}`)
-                const newDate = moment(d.date).format('MMMM D Y')
-                $("#recentDate").html(newDate)
+//                 $("#recentTitle").html(d.title.rendered)
+//                 $("#recentTitle").attr("href", `/blog.html/${d.id}`)
+//                 const newDate = moment(d.date).format('MMMM D Y')
+//                 $("#recentDate").html(newDate)
 
-                $("#recentPost").append(`
-                <div class="single-post" >
-                                        <div class="post-thumbnail">
-                                            <a href="/blog?id=${d.id}" id="recentLink"><img src="${imgDetails.src}" id="recentImage" style="width:100px; height:80px;" alt="${imgDetails.src}"></a>
-                                        </div>
-                                        <div class="post-content">
-                                            <h6 class="title"><a href="/blog.html?id=${d.id}" id="recentLink" id="recentTitle">${d.title.rendered}</a></h6>
-                                            <ul class="blog-meta list-unstyled">
-                                                <li id="recentDate">${newDate}</li>
-                                                <li id="recentTimeTORead">9 min to read</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                `);
+//                 $("#recentPost").append(`
+//                 <div class="single-post" >
+//                                         <div class="post-thumbnail">
+//                                             <a href="/blog?id=${d.id}" id="recentLink"><img src="${imgDetails.src}" id="recentImage" style="width:100px; height:80px;" alt="${imgDetails.src}"></a>
+//                                         </div>
+//                                         <div class="post-content">
+//                                             <h6 class="title"><a href="/blog.html?id=${d.id}" id="recentLink" id="recentTitle">${d.title.rendered}</a></h6>
+//                                             <ul class="blog-meta list-unstyled">
+//                                                 <li id="recentDate">${newDate}</li>
+//                                                 <li id="recentTimeTORead">9 min to read</li>
+//                                             </ul>
+//                                         </div>
+//                                     </div>
+//                 `);
 
-            })
-        }
-        )
+//             })
+//         }
+//         )
 
-        fetch("https://content.ionicbyte.com/wp-json/wp/v2/categories/")
-        .then((response) => response.json())
-        .then(async(data) =>{
-            data.map(d=>{
-                $("#categoriesContent").append(`
-                    <li><a href="#">${d.name}</a></li>
-                `)
-            })
-        })
+//         fetch("https://content.ionicbyte.com/wp-json/wp/v2/categories/")
+//         .then((response) => response.json())
+//         .then(async(data) =>{
+//             data.map(d=>{
+//                 $("#categoriesContent").append(`
+//                     <li><a href="#">${d.name}</a></li>
+//                 `)
+//             })
+//         })
     
-}
+// }
 
-if(window.location.search === ''){
-    // showAllBlogs()
-} else{
-    showBlog(window.location.search.substring(window.location.search.lastIndexOf('=') + 1))
-}
+// if(window.location.search === ''){
+//     // showAllBlogs()
+// } else{
+//     showBlog(window.location.search.substring(window.location.search.lastIndexOf('=') + 1))
+// }
 
-// const client = new WpApiClient('https://content.ionicbyte.com/wp-json/wp/v2/posts')
+// // const client = new WpApiClient('https://content.ionicbyte.com/wp-json/wp/v2/posts')
 
-// const ctdatas = await client.post().find()
-// console.log(ctdatas);
+// // const ctdatas = await client.post().find()
+// // // console.log(ctdatas);
 
-function sendMail(){
-    // var name = $('#contactName').val();
-    // var email = $('#contactEmail').val();
-    // var number = $('#contactNumber').val();
-    // var message = $('#contactMessage').val();
-    // console.log(name, email, number, message);
-    // axios({
-    //     method: 'post',
-    //     url: 'http://localhost:3000',
-    //     data: {
-    //         name, email, number, message
-    //     }
-    //   });
-      alert("Email sent. We will contact you soon")
+// function sendMail(){
+//     // var name = $('#contactName').val();
+//     // var email = $('#contactEmail').val();
+//     // var number = $('#contactNumber').val();
+//     // var message = $('#contactMessage').val();
+//     // // console.log(name, email, number, message);
+//     // axios({
+//     //     method: 'post',
+//     //     url: 'http://localhost:3000',
+//     //     data: {
+//     //         name, email, number, message
+//     //     }
+//     //   });
+//       alert("Email sent. We will contact you soon")
 
-    }
+//     }
 
-    // http://ionicbyte.rf.gd/
+//     // http://ionicbyte.rf.gd/

@@ -1,11 +1,26 @@
 <script>
     import { page } from '$app/stores';
-  console.log($page.params)
-  export let data;
-  let blogPost = data.post;
-  console.log(blogPost);
-  let contents = JSON.stringify(data.post.data.content.rendered)  
-    console.log(contents);
+  import { onMount } from 'svelte';
+//   // console.log($page.params)
+
+    const getOneBlog = async (domain, postId) => {
+        const response = await fetch(`${domain}/wp-json/wp/v2/posts/${postId}`);
+        const post = await response.json();
+        const mediaId = post.featured_media;
+        const mediaResponse = await fetch(`${domain}/wp-json/wp/v2/media/${mediaId}`);
+        const media = await mediaResponse.json();
+        const mediaLink = {imgSrc : media.guid.rendered, altText: media.alt_text}
+        return { data: post, imageDetails: mediaLink }
+    }
+
+    let blogPost;
+    onMount(async()=>{
+        blogPost = await getOneBlog("https://content.ionicbyte.com", $page.params.slug)
+    })
+
+    console.log(blogPost)
+//   // console.log(blogPost);
+    // // console.log(contents);
    
     // if (typeof window !== 'undefined') {
     //     window.$("#BlogPara").html(contents) 
@@ -132,8 +147,8 @@
                         <li><a href="/">Home</a></li>
                         <li class="active">Blog</li>
                     </ul>
-                    {#if data.post}
-                        <h1 id="BlogTitle" class="title h2">{data.post.data.title.rendered}</h1>  
+                    {#if blogPost}
+                        <h1 id="BlogTitle" class="title h2">{blogPost.data.title.rendered}</h1>  
                     {:else}
                         <h1 id="BlogTitle" class="title h2">Loading....</h1>
                     {/if}
@@ -156,14 +171,16 @@
                             <div class="single-blog-content blog-grid">
                                 <div class="post-thumbnail">
                                    
-                                    {#if data.post.imageDetails}
-                                        <img src={data.post.imageDetails.imgSrc} style="width: 850px !important ;height: 450px !important; object-fit: cover;" id="BlogImage" alt="Blog">
+                                    {#if blogPost}
+                                        <img src={blogPost.imageDetails.imgSrc} style="width: 850px !important ;height: 450px !important; object-fit: cover;" id="BlogImage" alt="Blog">
                                     {:else}
                                         <img src="/assets/media/placeholder.webp" style="width: 850px !important ;height: 450px !important; object-fit: cover;" id="BlogImage" alt="Blog">    
                                     {/if}
                                 </div>
                                 <div id="BlogPara">
-                                   {@html data.post.data.content.rendered}
+                                    {#if blogPost}
+                                        {@html blogPost.data.content.rendered}
+                                    {/if}
                                 </div>
                                 
                             </div>

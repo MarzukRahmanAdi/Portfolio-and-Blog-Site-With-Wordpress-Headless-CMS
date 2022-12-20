@@ -14,7 +14,7 @@ export async function load() {
     //     title,
     //     "imageUrl": poster.asset->url
     //   }`);
-    // console.log(data);
+    // // console.log(data);
     // if (data) {
     //   return {
     //     project: data,
@@ -25,10 +25,10 @@ export async function load() {
     let blogPostsWithImages = await getImages(BlogPosts, "https://content.ionicbyte.com")
     // https://case.ionicbyte.com/wp
     let caseStudy = await getPosts("https://case.ionicbyte.com/wp", 4);
-    console.log(caseStudy);
+    // // console.log(caseStudy);
     let caseStudyWithImages = await getImages(caseStudy, "https://case.ionicbyte.com/wp")
 
-    console.log(caseStudyWithImages);
+    // // console.log(caseStudyWithImages);
     return {
         // project: data,
         // client: client

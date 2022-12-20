@@ -7,6 +7,31 @@
 		
 		%sveltekit.head%
 	</head>
+	<style>
+		/* width */
+		::-webkit-scrollbar {
+			width: 5px;
+		}
+
+		/* Track */
+		::-webkit-scrollbar-track {
+			background: #f1f1f1;
+			/* border-radius: 15px; */
+		}
+
+		/* Handle */
+		::-webkit-scrollbar-thumb {
+			background: #7200ea;
+			border-radius: 50px;
+
+		}
+
+		/* Handle on hover */
+		::-webkit-scrollbar-thumb:hover {
+			background: #5a00b9;
+		}
+
+	</style>
 	<body>
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>

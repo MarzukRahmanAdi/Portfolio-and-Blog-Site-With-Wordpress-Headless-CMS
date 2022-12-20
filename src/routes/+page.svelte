@@ -1,8 +1,60 @@
-<script>   
-export let data;
-// let sanity_projects = data.project
-let seeMore = false;
-console.log(data.caseStudy);
+
+<script>
+  import { onMount } from "svelte";
+
+
+
+
+
+
+    const getPosts = async (domain, number) => {
+        let dataRes = await fetch(
+            `${domain}/wp-json/wp/v2/posts?per_page=${number}`
+        );
+        let datas = await dataRes.json();
+        return datas;
+    };
+
+    const getImages = async (posts, domain) => {
+        const result = await Promise.all(posts.map(async (post) => {
+            const imgDetailsRes = await fetch(
+                `${domain}/wp-json/wp/v2/media/${post.featured_media}`
+            );
+            const imgDetails = await imgDetailsRes.json();
+            let img;
+            if (imgDetails.guid) {
+                img = {
+                    src: imgDetails.guid.rendered,
+                    alt: imgDetails.alt_text
+                };
+            } else {
+                img = {
+                    src: "https://img.freepik.com/free-vector/internet-network-warning-404-error-page-file-found-web-page-internet-error-page-issue-found-network-404-error-present-by-man-sleep-display_1150-55450.jpg?w=2000",
+                    alt:"ionicbyte blog"
+                }
+            }
+            return { data: post, imageDetails: img }
+        }));
+        return result;
+    };
+
+
+
+    let blogPosts;
+    let caseStudy;
+
+    onMount(async() => {
+        let BlogPosts = await getPosts("https://content.ionicbyte.com", 4);
+        let blogPostsWithImages = await getImages(BlogPosts, "https://content.ionicbyte.com")
+        blogPosts = blogPostsWithImages;
+        let caseStudies = await getPosts("https://case.ionicbyte.com/wp", 4);
+        let caseStudyWithImages = await getImages(caseStudies, "https://case.ionicbyte.com/wp")
+        caseStudy = caseStudyWithImages;
+        console.log(caseStudy)
+    })
+    let seeMore = false;
+
+
 </script>
 
 <head>
@@ -487,26 +539,10 @@ console.log(data.caseStudy);
                                 </div>
                             </div>
                         </div>  
-                        {#if seeMore === true}
-                            {#each sanity_projects as dt}
-                         <div class="col-md-6 project branding">
-                            <div class="project-grid">
-                                <div class="thumbnail"><img
-                                            src={dt.imageUrl} alt="project"></div>
-                                <div class="content">
-                                    <h4 class="title">{dt.title}</h4><span
-                                        class="subtitle">{dt.Desc}</span>
-                                </div>
-                            </div>
-                        </div>
-                            {/each}
-                        {/if}
                     </div>
-                    {#if seeMore === false}
                     <div class="btn-seeMoreContainer">
-                        <button class="btn btn-seeMore" on:click={()=>{seeMore = true}} >See more</button>
+                        <a href="/projects"><button class="btn btn-seeMore" >See more</button></a>
                     </div>
-                    {/if}
                 </div>
             </div>
             <ul class="shape-group-7 list-unstyled">
@@ -526,20 +562,26 @@ console.log(data.caseStudy);
                                 class="filter-text">All Works</span></button><button data-filter=".branding"><span
                                 class="filter-text">Branding</span></button><button data-filter=".mobile"><span
                                 class="filter-text">Mobile</span></button></div> -->
-                        {#each data.caseStudy as dt}
-                            <div class="col-md-6 project branding">
-                                <a href="/case/{dt.data.id}">
-                                    <div class="project-grid">
-                                        <div class="thumbnail"><img
-                                                    src={dt.imageDetails.src} alt={dt.imageDetails.alt}></div>
-                                        <div class="content">
-                                            <h4 class="title">{@html dt.data.title.rendered.substring(0,90)}</h4><span
-                                                class="subtitle" style="">{@html dt.data.content.rendered.substring(0,150).replace(/<[^>]*>/g, '')}...</span>
+                                {#if caseStudy}
+                                    {#each caseStudy as dt}
+                                        <div class="col-md-6 project branding">
+                                            <a href="/case?id={dt.data.id}">
+                                                asdasdsa
+                                                <div class="project-grid">
+                                                    <div class="thumbnail"><img
+                                                                src={dt.imageDetails.src} alt={dt.imageDetails.src}></div>
+                                                    <div class="content">
+                                                        <h4 class="title">{@html dt.data.title.rendered.substring(0,90)}</h4><span
+                                                            class="subtitle" style="">{@html dt.data.content.rendered.substring(0,150).replace(/<[^>]*>/g, '')}...</span>
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </div>
-                                    </div>
-                                </a>
-                            </div>
-                        {/each}
+                                    {/each}
+                                        {:else}
+                                        Loading...
+                                {/if}
+                   
                   
             </div>
             <ul class="shape-group-7 list-unstyled">
@@ -858,20 +900,25 @@ console.log(data.caseStudy);
                     <p></p>
                 </div>
                 <div class="row g-0" id="blogSection">
-                    {#each data.blogPosts as blog}
-                    <!-- <p>{blog.data.title.rendered.substring(0,90)}</p> -->
-                            <div class="col-xl-6">
-                                <div class="blog-list active">
-                                    <div class="post-thumbnail"><a href="/blog/{blog.data.id}"><img style="width: 300px !important; height: 240px !important;   object-fit: cover;"
-                                                src={blog.imageDetails.src} alt={blog.imageDetails.alt}></a></div>
-                                    <div class="post-content">
-                                        <h5 class="title"><a href="/blog/{blog.data.id}">{blog.data.title.rendered}</a></h5>
-                                        <p>{@html blog.data.content.rendered.substring(0,90)}...</p><a href="/blog/{blog.data.id}" class="more-btn">Learn more<i
-                                                class="far fa-angle-right"></i></a>
+                    {#if blogPosts}
+                        {#each blogPosts as blog}
+                        <!-- <p>{blog.data.title.rendered.substring(0,90)}</p> -->
+                                <div class="col-xl-6">
+                                    <div class="blog-list active">
+                                        <div class="post-thumbnail"><a href="/blog?id={blog.data.id}"><img style="width: 300px !important; height: 240px !important;   object-fit: cover;"
+                                                    src={blog.imageDetails.src} alt={blog.imageDetails.alt}></a></div>
+                                        <div class="post-content">
+                                            <h5 class="title"><a href="/blog?id={blog.data.id}">{blog.data.title.rendered}</a></h5>
+                                            <p>{@html blog.data.content.rendered.substring(0,90)}...</p><a href="/blog?id={blog.data.id}" class="more-btn">Learn more<i
+                                                    class="far fa-angle-right"></i></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                    {/each}
+                        {/each}
+                    {:else}
+                            Loading....
+                    {/if}
+                   
                 </div>
             </div>
             <ul class="shape-group-1 list-unstyled">
