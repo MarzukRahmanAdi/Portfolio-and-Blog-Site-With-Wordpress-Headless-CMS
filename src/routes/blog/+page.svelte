@@ -219,7 +219,7 @@
                             </div>
                             <div class="widget widget-banner-ad">
                                 <a href="#">
-                                    <img src="/assets/media/banner/widget-banner.png" alt="banner">
+                                    <img src="https://i.ibb.co/1vSwx4v/Frame-1.png" alt="banner">
                                 </a>
                             </div>
                         </div>
