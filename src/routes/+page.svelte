@@ -1,58 +1,58 @@
 
 <script>
-  import { onMount } from "svelte";
+//   import { onMount } from "svelte";
 
 
 
 
 
 
-    const getPosts = async (domain, number) => {
-        let dataRes = await fetch(
-            `${domain}/wp-json/wp/v2/posts?per_page=${number}`
-        );
-        let datas = await dataRes.json();
-        return datas;
-    };
+//     const getPosts = async (domain, number) => {
+//         let dataRes = await fetch(
+//             `${domain}/wp-json/wp/v2/posts?per_page=${number}`
+//         );
+//         let datas = await dataRes.json();
+//         return datas;
+//     };
 
-    const getImages = async (posts, domain) => {
-        const result = await Promise.all(posts.map(async (post) => {
-            const imgDetailsRes = await fetch(
-                `${domain}/wp-json/wp/v2/media/${post.featured_media}`
-            );
-            const imgDetails = await imgDetailsRes.json();
-            let img;
-            if (imgDetails.guid) {
-                img = {
-                    src: imgDetails.guid.rendered,
-                    alt: imgDetails.alt_text
-                };
-            } else {
-                img = {
-                    src: "https://img.freepik.com/free-vector/internet-network-warning-404-error-page-file-found-web-page-internet-error-page-issue-found-network-404-error-present-by-man-sleep-display_1150-55450.jpg?w=2000",
-                    alt:"ionicbyte blog"
-                }
-            }
-            return { data: post, imageDetails: img }
-        }));
-        return result;
-    };
+//     const getImages = async (posts, domain) => {
+//         const result = await Promise.all(posts.map(async (post) => {
+//             const imgDetailsRes = await fetch(
+//                 `${domain}/wp-json/wp/v2/media/${post.featured_media}`
+//             );
+//             const imgDetails = await imgDetailsRes.json();
+//             let img;
+//             if (imgDetails.guid) {
+//                 img = {
+//                     src: imgDetails.guid.rendered,
+//                     alt: imgDetails.alt_text
+//                 };
+//             } else {
+//                 img = {
+//                     src: "https://img.freepik.com/free-vector/internet-network-warning-404-error-page-file-found-web-page-internet-error-page-issue-found-network-404-error-present-by-man-sleep-display_1150-55450.jpg?w=2000",
+//                     alt:"ionicbyte blog"
+//                 }
+//             }
+//             return { data: post, imageDetails: img }
+//         }));
+//         return result;
+//     };
 
 
 
-    let blogPosts;
-    let caseStudy;
+//     let blogPosts;
+//     let caseStudy;
 
-    onMount(async() => {
-        let BlogPosts = await getPosts("https://content.ionicbyte.com", 4);
-        let blogPostsWithImages = await getImages(BlogPosts, "https://content.ionicbyte.com")
-        blogPosts = blogPostsWithImages;
-        let caseStudies = await getPosts("https://case.ionicbyte.com/wp", 4);
-        let caseStudyWithImages = await getImages(caseStudies, "https://case.ionicbyte.com/wp")
-        caseStudy = caseStudyWithImages;
-        console.log(caseStudy)
-    })
-    let seeMore = false;
+//     onMount(async() => {
+//         let BlogPosts = await getPosts("https://content.ionicbyte.com", 4);
+//         let blogPostsWithImages = await getImages(BlogPosts, "https://content.ionicbyte.com")
+//         blogPosts = blogPostsWithImages;
+//         let caseStudies = await getPosts("https://case.ionicbyte.com/wp", 4);
+//         let caseStudyWithImages = await getImages(caseStudies, "https://case.ionicbyte.com/wp")
+//         caseStudy = caseStudyWithImages;
+//         console.log(caseStudy)
+//     })
+//     let seeMore = false;
 
 
 </script>
@@ -130,7 +130,7 @@
                                     <li><a href="#services">Services</a></li>
                                     <li><a href="#projects">Why Us</a></li>
                                     <li><a href="#contact">Contact</a></li>
-                                    <li><a href="#blogs">Stories</a></li>
+                                    <!-- <li><a href="#blogs">Stories</a></li> -->
                                 </ul>
                             </nav>
                         </div>
@@ -439,7 +439,7 @@
         <section class="section section-padding-2">
             <div class="container">
                 <div class="section-heading heading-left mb--40"><span class="subtitle">Featured case-study</span>
-                    <h2 class="title">Some of our<br>finest work.</h2>
+                    <h2 class="title">Some of our<br>   k.</h2>
                 </div>
                 <div class="axil-isotope-wrapper">
                     <!-- <div class="isotope-button isotope-project-btn"><button data-filter="*" class="is-checked"><span
@@ -551,17 +551,20 @@
                 <li class="shape shape-3"><img src="assets/media/others/bubble-1.png" alt="Line"></li>
             </ul>
         </section>
+        
+        <!-- <div class="isotope-button isotope-project-btn"><button data-filter="*" class="is-checked"><span
+                    class="filter-text">All Works</span></button><button data-filter=".branding"><span
+                    class="filter-text">Branding</span></button><button data-filter=".mobile"><span
+                    class="filter-text">Mobile</span></button></div> -->
 
-        <section class="section section-padding-2">
+        <!-- You can uncomment this section when you have created a wordpress case studies website  -->
+
+        <!-- <section class="section section-padding-2">
             <div class="container">
                 <div class="section-heading heading-left mb--40"><span class="subtitle">Case Studies</span>
                     <h2 class="title">Some of our<br>Case Studies.</h2>
                 </div>
                 <div class="axil-isotope-wrapper row">
-                    <!-- <div class="isotope-button isotope-project-btn"><button data-filter="*" class="is-checked"><span
-                                class="filter-text">All Works</span></button><button data-filter=".branding"><span
-                                class="filter-text">Branding</span></button><button data-filter=".mobile"><span
-                                class="filter-text">Mobile</span></button></div> -->
                                 {#if caseStudy}
                                     {#each caseStudy as dt}
                                         <div class="col-md-6 project branding">
@@ -589,7 +592,7 @@
                 <li class="shape shape-2"><img src="assets/media/others/bubble-2.png" alt="Line"></li>
                 <li class="shape shape-3"><img src="assets/media/others/bubble-1.png" alt="Line"></li>
             </ul>
-        </section>
+        </section> -->
         <!-- <section class="section section-padding bg-color-dark">
             <div class="container">
                 <div class="section-heading heading-light"><span class="subtitle">Featured Case Study</span>
@@ -893,7 +896,9 @@
                 <li class="shape shape-7"><img src="assets/media/others/bubble-16.png" alt="Comments"></li>
             </ul>
         </section>
-        <section id="blogs" class="section section-padding-equal">
+
+        <!-- You can uncomment this section when you have created a wordpress blog website  -->
+        <!-- <section id="blogs" class="section section-padding-equal">
             <div class="container">
                 <div class="section-heading"><span class="subtitle">What's Going On</span>
                     <h2 class="title">Latest Blogs</h2>
@@ -902,7 +907,6 @@
                 <div class="row g-0" id="blogSection">
                     {#if blogPosts}
                         {#each blogPosts as blog}
-                        <!-- <p>{blog.data.title.rendered.substring(0,90)}</p> -->
                                 <div class="col-xl-6">
                                     <div class="blog-list active">
                                         <div class="post-thumbnail"><a href="/blog?id={blog.data.id}"><img style="width: 300px !important; height: 240px !important;   object-fit: cover;"
@@ -927,7 +931,7 @@
                 <li class="shape shape-3"><img src="assets/media/others/line-2.png" alt="bubble"></li>
                 <li class="shape shape-4"><img src="assets/media/others/bubble-2.png" alt="bubble"></li>
             </ul>
-        </section>
+        </section> -->
 
         <footer class="footer-area">
             <div class="container">
